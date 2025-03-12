@@ -1,24 +1,25 @@
 """PostgreSQL connect module"""
 
-from sqlalchemy.ext.asyncio import AsyncSession, create_async_engine
-from sqlalchemy.orm import DeclarativeBase, sessionmaker
+from sqlalchemy import create_engine
+from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.orm import sessionmaker
 
 from app.config import env
 
 SQLALCHEMY_DATABASE_URL = env.DATABASE_URL
 
-engine = create_async_engine(url=SQLALCHEMY_DATABASE_URL)
+engine = create_engine(url=SQLALCHEMY_DATABASE_URL, echo=True)
 SessionLocal = sessionmaker(
-    engine,
-    class_=AsyncSession,
+    bind=engine,
     expire_on_commit=False,
 )
 
+Base = declarative_base()
 
-class Base(DeclarativeBase): ...
+# class Base(DeclarativeBase): ...
 
 
-async def get_db():
+def get_db():
     """database connection session
 
     Yields
@@ -30,4 +31,4 @@ async def get_db():
     try:
         yield db
     finally:
-        await db.close()
+        db.close()
