@@ -1,24 +1,21 @@
 {
     "editor.minimap.enabled": false,
-    "editor.rulers": [79],
+    "editor.rulers": [
+        79
+    ],
     "debug.toolBarLocation": "commandCenter",
-    
     // Docstring
     "autoDocstring.docstringFormat": "numpy",
-    
     // Formatter `black`
     "editor.defaultFormatter": "ms-python.black-formatter",
     "editor.formatOnSave": true,
     "black-formatter.args": [
         "--line-length=79"
     ],
-
     // Lint `pylint`
     "pylint.args": [
         "--max-line-length=79"
     ],
-
-
     // Pylance
     "python.languageServer": "Pylance",
     "python.analysis.indexing": true,
@@ -29,8 +26,13 @@
     "python.analysis.inlayHints.callArgumentNames": "all",
     "python.analysis.inlayHints.functionReturnTypes": true,
     "python.analysis.importFormat": "absolute",
-
-
+    // isort
+    "isort.args": [
+        "--case-sensitive",
+        "--dont-order-by-type",
+        "--profile",
+        "black",
+    ],
     // Python `Remove unused imports`
     "[python]": {
         "editor.codeActionsOnSave": {
