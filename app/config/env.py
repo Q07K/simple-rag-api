@@ -7,7 +7,9 @@ DATABASE_URL = (
     + ":"
     + os.getenv(key="POSTGRESQL_PW", default="")
     + "@"
-    + os.getenv(key="POSTGRESQL_URL", default="localhost:5432")
+    + os.getenv(key="POSTGRESQL_URL", default="localhost")
+    + ":"
+    + os.getenv(key="POSTGRESQL_PORT", default="5432")
     + "/"
     + os.getenv(key="POSTGRESQL_DB", default="default")
 )
