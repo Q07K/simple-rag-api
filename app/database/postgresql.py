@@ -1,10 +1,9 @@
 """PostgreSQL connect module"""
 
-from sqlalchemy.orm import sessionmaker
-from sqlalchemy.ext.asyncio import create_async_engine, AsyncSession
-from sqlalchemy.ext.declarative import declarative_base
-from app.config import env
+from sqlalchemy.ext.asyncio import AsyncSession, create_async_engine
+from sqlalchemy.orm import DeclarativeBase, sessionmaker
 
+from app.config import env
 
 SQLALCHEMY_DATABASE_URL = env.DATABASE_URL
 
@@ -15,7 +14,8 @@ SessionLocal = sessionmaker(
     expire_on_commit=False,
 )
 
-Base = declarative_base()
+
+class Base(DeclarativeBase): ...
 
 
 async def get_db():
