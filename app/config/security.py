@@ -1,12 +1,14 @@
 from datetime import datetime, timedelta, timezone
 from typing import Literal
 
+from fastapi.security import OAuth2PasswordBearer
 from jose import jwt
 from passlib.context import CryptContext
 
 from app.config import env
 
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
+oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
 
 
 def create_token(
