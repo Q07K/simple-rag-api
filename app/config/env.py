@@ -16,6 +16,7 @@ DATABASE_URL = (
 
 # Token
 SECRET_KEY = os.getenv(key="SECRET_KEY", default="password")
+SECRET_SALT = os.getenv(key="SECRET_SALT", default="")
 ALGORITHM = os.getenv(key="ALGORITHM", default="default")
 ACCESS_TOKEN_EXPIRE_MINUTES = int(
     os.getenv(
@@ -29,6 +30,7 @@ REFRESH_TOKEN_EXPIRE_MINUTES = int(
         default="1440",
     )
 )
+
 # SMTP
 SMTP_EMAIL = os.getenv("SMTP_EMAIL", "")
 SMTP_PASSWORD = os.getenv("SMTP_PASSWORD", "")
