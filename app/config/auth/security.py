@@ -15,7 +15,7 @@ def create_token(
     subject: str,
     expires_delta: timedelta | None = None,
     token_type: Literal["access", "refresh"] = "access",
-) -> str:
+) -> tuple[datetime, str]:
     """Create Json Web Token
 
     Parameters
@@ -35,8 +35,11 @@ def create_token(
 
     expire = datetime.now(timezone.utc)
 
-    if expires_delta is None:
-        expires_delta = timedelta(minutes=env.ACCESS_TOKEN_EXPIRE_MINUTES)
+    match token_type:
+        case "access":
+            expires_delta = timedelta(minutes=env.ACCESS_TOKEN_EXPIRE_MINUTES)
+        case "refresh":
+            expires_delta = timedelta(minutes=env.REFRESH_TOKEN_EXPIRE_MINUTES)
 
     expire += expires_delta
 
@@ -46,7 +49,7 @@ def create_token(
         "type": token_type,
     }
 
-    return jwt.encode(
+    return expire, jwt.encode(
         claims=to_encode,
         key=env.SECRET_KEY,
         algorithm=env.ALGORITHM,
