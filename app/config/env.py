@@ -29,3 +29,9 @@ REFRESH_TOKEN_EXPIRE_MINUTES = int(
         default="1440",
     )
 )
+# SMTP
+SMTP_EMAIL = os.getenv("SMTP_EMAIL", "")
+SMTP_PASSWORD = os.getenv("SMTP_PASSWORD", "")
+
+# WEB
+WEB_URL = os.getenv("WEB_URL", "")
