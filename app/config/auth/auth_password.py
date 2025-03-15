@@ -21,9 +21,7 @@ def generate_password(length=12) -> str:
     all_characters = string.ascii_letters + string.digits + string.punctuation
 
     # 비밀번호 생성
-    password = "".join(random.choice(all_characters) for _ in range(length))
-
-    return password
+    return "".join(random.choice(all_characters) for _ in range(length))
 
 
 def get_password_hash(password: str) -> str:
