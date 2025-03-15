@@ -1,3 +1,4 @@
+from sqlalchemy import select
 from sqlalchemy.orm import Session
 
 # pylint:disable=wildcard-import, unused-wildcard-import
@@ -9,4 +10,6 @@ def get_user_by_email(
     db: Session,
     email: str,
 ) -> UserModel:
-    return db.query(UserModel).filter_by(email=email).first()
+    return db.execute(
+        statement=select(UserModel).where(UserModel.email == email)
+    ).scalar_one()
