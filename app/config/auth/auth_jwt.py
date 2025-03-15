@@ -1,8 +1,9 @@
 from datetime import datetime, timedelta, timezone
 from typing import Literal
 
+from fastapi import HTTPException, Request
 from fastapi.security import OAuth2PasswordBearer
-from jose import jwt
+from jose import JWTError, jwt
 from passlib.context import CryptContext
 
 from app.config import env
@@ -54,3 +55,34 @@ def create_token(
         key=env.SECRET_KEY,
         algorithm=env.ALGORITHM,
     )
+
+
+async def get_current_user(request: Request) -> str:
+    access_token = request.cookies.get("access_token")
+    token_type = request.cookies.get("token_type")
+    headers = {"WWW-Authenticate": token_type}
+
+    credentials_exception = HTTPException(
+        status_code=401,
+        detail="Could not validate credentials",
+        headers=headers,
+    )
+
+    if access_token is None:
+        raise credentials_exception
+
+    try:
+        access_payload = jwt.decode(
+            token=access_token,
+            key=env.SECRET_KEY,
+            algorithms=env.ALGORITHM,
+        )
+
+        user_id = access_payload.get("sub")
+        if user_id is None:
+            raise credentials_exception
+        return str(user_id)
+
+    except JWTError as e:
+        print(e)
+        raise credentials_exception from e
