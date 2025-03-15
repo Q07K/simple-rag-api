@@ -5,7 +5,10 @@ description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
+    "bcrypt==4.0.1",
     "fastapi[standard]==0.115.11",
+    "passlib==1.7.4",
     "psycopg2==2.9.10",
+    "python-jose==3.4.0",
     "sqlalchemy==2.0.38",
 ]
