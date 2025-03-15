@@ -13,18 +13,3 @@ app.add_exception_handler(
 
 # Include Router
 app.include_router(router=auth_router.router)
-
-
-@app.get("/{test}")
-async def root(test: str):
-    if test == "test":
-        raise HTTPException(
-            status_code=400,
-            detail="This is an error",
-        )
-    if test == "a":
-        raise HTTPException(
-            status_code=401,
-            detail="access token expired",
-        )
-    return {"message": "Hello World"}
