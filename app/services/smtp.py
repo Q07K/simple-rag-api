@@ -24,7 +24,10 @@ def send_invite_email(
 
             html_content = html_content.replace("{recipient_name}", name)
             html_content = html_content.replace("{signup_link}", env.WEB_URL)
-            html_content = html_content.replace("{password}", password)
+            html_content = html_content.replace(
+                "{password}",
+                f"<code>{password}</code>",
+            )
 
             msg = MIMEText(html_content, "html")
             msg["Subject"] = "simple-RAG에 초대합니다."
