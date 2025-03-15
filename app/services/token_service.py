@@ -2,8 +2,8 @@
 
 from sqlalchemy.orm import Session
 
-from app.config.auth.security import create_token
-from app.crud.sessions_crud import create_session
+from app.config.auth.auth_jwt import create_token
+from app.crud.sessions_crud import create_session, delete_session_by_user_id
 from app.models.user_model import UserModel
 
 
@@ -30,7 +30,7 @@ def create_tokens(db: Session, model: UserModel) -> tuple[str, str]:
         subject=model.id,
         token_type="refresh",
     )
-
+    delete_session_by_user_id(db=db, user_id=model.id)
     create_session(
         db=db,
         user_id=model.id,
