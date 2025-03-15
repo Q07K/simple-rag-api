@@ -1,5 +1,29 @@
+import random
+import string
+
 from app.config import env
 from app.config.auth.auth_jwt import pwd_context
+
+
+def generate_password(length=12) -> str:
+    """password 생성
+
+    Parameters
+    ----------
+    length : int, optional
+        password 생성 길이이, by default 12
+
+    Returns
+    -------
+    str
+        password
+    """
+    all_characters = string.ascii_letters + string.digits + string.punctuation
+
+    # 비밀번호 생성
+    password = "".join(random.choice(all_characters) for _ in range(length))
+
+    return password
 
 
 def get_password_hash(password: str) -> str:
