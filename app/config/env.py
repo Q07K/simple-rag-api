@@ -37,3 +37,7 @@ SMTP_PASSWORD = os.getenv("SMTP_PASSWORD", "")
 
 # WEB
 WEB_URL = os.getenv("WEB_URL", "")
+
+# RunPod Endpoint
+TULU3_ID = os.getenv("TULU3_ID", "")
+TULU3_KEY = os.getenv("TULU3_KEY", "")
