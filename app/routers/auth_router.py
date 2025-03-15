@@ -28,8 +28,8 @@ async def login(
     - **password**: User's password
 
     **Returns:**
-    - `200`: Login successful, returns access & refresh tokens.
-    - `401`: Invalid email or password.
+    - **200**: Login successful, returns access & refresh tokens.
+    - **401**: Invalid email or password.
     """
     with db:
         model = get_user_by_email(db=db, email=form_data.username)

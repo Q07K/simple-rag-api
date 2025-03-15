@@ -1,6 +1,6 @@
 from fastapi import FastAPI, HTTPException
 
-from app.routers import auth_router
+from app.routers import admin_router, auth_router
 from app.services import custom_exception_response
 
 app = FastAPI()
@@ -12,4 +12,5 @@ app.add_exception_handler(
 )
 
 # Include Router
+app.include_router(router=admin_router.router)
 app.include_router(router=auth_router.router)
