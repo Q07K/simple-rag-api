@@ -38,7 +38,7 @@ async def get_chats(
     )
 
 
-@router.get("{chat_id}")
+@router.get("/{chat_id}")
 async def get_chat_messages(
     chat_id: str,
     db: Session = Depends(get_db),
@@ -83,7 +83,7 @@ async def initiate(
     )
 
 
-@router.post(path="{chat_id}/generate")
+@router.post(path="/{chat_id}/generate")
 async def generate(
     chat_id: str,
     body: ChatRequest,
@@ -110,7 +110,7 @@ async def generate(
     )
 
 
-@router.delete("{chat_id}")
+@router.delete("/{chat_id}")
 async def delete_chat(
     chat_id: str,
     db: Session = Depends(get_db),
