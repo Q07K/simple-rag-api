@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>회원가입 초대</title>
+    <style>
+        .container {
+            background: #F0EBE3;
+            text-align: center;
+            padding: 20px;
+            border-radius: 10px;
+            max-width: 500px;
+            margin: auto;
+        }
+        
+        .button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #3E5879;
+            color: white !important;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+        code {
+            font-family: Consolas,"courier new";
+            color: crimson;
+            background-color: #f1f1f1;
+            padding: 2px;
+            font-size: 105%;
+          }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>안녕하세요, {recipient_name}님!</h2>
+        <p>Simple-RAG에 초대합니다.</p>
+        <p>비밀번호: {password}</p>
+        <a class="button" href="{signup_link}">시작</a>
+    </div>
+</body>
+</html>
