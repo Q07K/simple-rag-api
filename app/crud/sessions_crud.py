@@ -28,7 +28,7 @@ def get_session_by_user_id(
     user_id: str,
 ) -> SessionModel | None:
     stmp = select(SessionModel).where(SessionModel, user_id == user_id)
-    return db.execute(stmp).scalar_one()
+    return db.execute(stmp).scalar_one_or_none()
 
 
 def delete_session_by_user_id(
