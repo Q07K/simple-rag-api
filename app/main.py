@@ -1,9 +1,10 @@
 from fastapi import FastAPI, HTTPException
 
 from app.routers import admin_router, auth_router, chat_router
+from app.routers.lifespan import lifespan
 from app.services import custom_exception_response
 
-app = FastAPI()
+app = FastAPI(lifespan=lifespan)
 
 # Exception Handler
 app.add_exception_handler(
