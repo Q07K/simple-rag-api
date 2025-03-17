@@ -8,7 +8,7 @@ from app.config import env
 
 SQLALCHEMY_DATABASE_URL = env.DATABASE_URL
 
-engine = create_engine(url=SQLALCHEMY_DATABASE_URL, echo=True)
+engine = create_engine(url=SQLALCHEMY_DATABASE_URL, echo=False)
 SessionLocal = sessionmaker(
     bind=engine,
     expire_on_commit=False,
